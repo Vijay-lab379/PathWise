@@ -1,16 +1,25 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Sora, Manrope } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Pathwise - Personalized Travel Planning Platform",
-  description: "A personalized travel planning platform for seamless itineraries, budgeting, and discovery.",
+  title: "Pathwise - Premium Travel Planning Platform",
+  description: "A personalized travel planning platform combining editorial design with smart itinerary and budget tools.",
 };
 
 export default function RootLayout({
@@ -19,8 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body>{children}</body>
+    <html lang="en" className={cn(sora.variable, manrope.variable, "antialiased")}>
+      <body className="bg-background text-foreground font-sans min-h-screen">
+        {children}
+      </body>
     </html>
   );
 }
