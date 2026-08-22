@@ -1,4 +1,4 @@
-# Pathwise (GlobeTrotter)
+# Pathwise
 
 Pathwise is a personalized travel planning platform designed to streamline trip discovery, itinerary building, budget management, and community travel sharing in a cohesive modern web experience.
 
