@@ -25,10 +25,10 @@ export function DesktopNavigation() {
             href={item.href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "px-3.5 py-2 rounded-md text-sm font-medium transition-colors duration-150 min-h-[44px] flex items-center justify-center focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2",
+              "px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 min-h-[44px] flex items-center justify-center focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2",
               active
-                ? "bg-primary/10 text-primary font-semibold"
-                : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                ? "bg-soft-blue text-primary font-bold border border-primary/20 shadow-2xs"
+                : "text-muted-foreground hover:text-primary hover:bg-soft-blue/60"
             )}
           >
             {item.label}

@@ -24,7 +24,7 @@ export function TripCard({ trip }: TripCardProps) {
   };
 
   return (
-    <div className="group bg-surface border border-border rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-primary/30 transition-all duration-200 flex flex-col justify-between">
+    <div className="group bg-surface border border-border rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between">
       {/* Top Photography Image */}
       <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-muted">
         <Image
@@ -32,7 +32,7 @@ export function TripCard({ trip }: TripCardProps) {
           alt={trip.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
@@ -90,7 +90,7 @@ export function TripCard({ trip }: TripCardProps) {
         <div className="pt-2 border-t border-border/60">
           <Link
             href={ROUTES.TRIP_DETAILS(trip.id)}
-            className="w-full py-2.5 px-4 bg-muted/60 hover:bg-primary hover:text-primary-foreground text-foreground font-medium rounded-xl text-xs transition-colors duration-150 flex items-center justify-center min-h-[44px] focus-visible:outline-2 focus-visible:outline-primary"
+            className="w-full py-2.5 px-4 bg-soft-blue hover:bg-primary hover:text-primary-foreground text-primary font-semibold rounded-xl text-xs transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center min-h-[44px] focus-visible:outline-2 focus-visible:outline-primary border border-primary/15"
           >
             <span>View Trip Details</span>
             <ArrowRight className="w-3.5 h-3.5 ml-1.5" />

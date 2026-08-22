@@ -14,6 +14,8 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-dark: var(--primary-dark);
+  --color-deep-navy: var(--deep-navy);
+  --color-soft-blue: var(--soft-blue);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -41,43 +43,45 @@
 }
 
 :root {
-  /* Pathwise Exact Primary Design Tokens */
-  --background: #F7F8F5;
+  /* Pathwise Premium Blue Design Tokens */
+  --background: #F7F9FC;
   --surface: #FFFFFF;
   --card: #FFFFFF;
-  --card-foreground: #17211F;
+  --card-foreground: #172033;
   --popover: #FFFFFF;
-  --popover-foreground: #17211F;
+  --popover-foreground: #172033;
   
-  --primary: #0B5D5E;
+  --primary: #2563EB;
   --primary-foreground: #FFFFFF;
-  --primary-dark: #073F40;
+  --primary-dark: #1D4ED8;
+  --deep-navy: #0F172A;
+  --soft-blue: #EFF6FF;
 
-  --foreground: #17211F;
-  --muted: #F0F2EE;
-  --muted-foreground: #66736F;
+  --foreground: #172033;
+  --muted: #EFF6FF;
+  --muted-foreground: #64748B;
 
-  --border: #E5E9E6;
-  --input: #E5E9E6;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
   
-  --travel-accent: #F27A5B;
+  --travel-accent: #F97360;
   --travel-accent-foreground: #FFFFFF;
   
-  --warm-sand: #F4E9D8;
-  --secondary: #F4E9D8;
-  --secondary-foreground: #17211F;
+  --warm-sand: #EFF6FF;
+  --secondary: #EFF6FF;
+  --secondary-foreground: #172033;
 
-  --accent: #F4E9D8;
-  --accent-foreground: #17211F;
+  --accent: #EFF6FF;
+  --accent-foreground: #172033;
 
   /* Semantic feedback tokens */
-  --info: #60A5FA;
+  --info: #2563EB;
   --success: #16A34A;
   --warning: #D97706;
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
 
-  --ring: #0B5D5E;
+  --ring: #2563EB;
   --radius: 0.5rem;
 }
 
@@ -145,8 +149,8 @@
 
   /* Selection and Focus Visibility */
   ::selection {
-    background-color: rgba(242, 122, 91, 0.2);
-    color: #17211F;
+    background-color: rgba(37, 99, 235, 0.2);
+    color: #172033;
   }
 
   :focus-visible {

@@ -18,11 +18,11 @@ export function CityCard({
     <div
       className={`group bg-surface border rounded-2xl overflow-hidden shadow-xs transition-all duration-200 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
         isSelected
-          ? "border-primary bg-primary/5 ring-1 ring-primary/20"
-          : "border-border hover:border-primary/40 hover:shadow-md"
+          ? "border-primary bg-soft-blue/50 ring-1 ring-primary/30"
+          : "border-border hover:border-primary/40 hover:shadow-md hover:-translate-y-0.5"
       }`}
     >
-      {/* Left Photo & Main Details (Option and its details from Screen 8) */}
+      {/* Left Photo & Main Details */}
       <div className="flex items-start space-x-4 w-full sm:w-auto flex-1">
         {/* Photo Container */}
         <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 bg-muted">
@@ -31,7 +31,7 @@ export function CityCard({
             alt={destination.city}
             fill
             sizes="112px"
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
           />
           <div className="absolute top-1.5 left-1.5 bg-surface/90 backdrop-blur-xs px-2 py-0.5 rounded-full text-[10px] font-semibold text-foreground flex items-center space-x-0.5 border border-border">
             <Star className="w-2.5 h-2.5 text-amber-500 fill-amber-500" />
@@ -42,7 +42,7 @@ export function CityCard({
         {/* Destination Information */}
         <div className="flex-1 min-w-0 space-y-1">
           <div className="flex items-center space-x-2">
-            <span className="bg-primary/10 text-primary text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md">
+            <span className="bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">
               {destination.tag}
             </span>
             <span className="text-xs text-muted-foreground">{destination.region}</span>
@@ -77,10 +77,10 @@ export function CityCard({
         <button
           type="button"
           onClick={() => onToggleSelect && onToggleSelect(destination)}
-          className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center justify-center space-x-1.5 min-h-[40px] cursor-pointer ${
+          className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-1.5 min-h-[40px] cursor-pointer ${
             isSelected
-              ? "bg-primary text-primary-foreground hover:bg-primary-dark"
-              : "bg-background text-foreground border border-border hover:border-primary/40 hover:bg-muted/60"
+              ? "bg-primary text-primary-foreground hover:bg-primary-dark shadow-2xs"
+              : "bg-soft-blue text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground shadow-2xs"
           }`}
         >
           {isSelected ? (
@@ -90,7 +90,7 @@ export function CityCard({
             </>
           ) : (
             <>
-              <Plus className="w-4 h-4 text-primary" />
+              <Plus className="w-4 h-4" />
               <span>Add to Trip</span>
             </>
           )}

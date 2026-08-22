@@ -32,7 +32,7 @@ export function MobileNavigation() {
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-border px-2 py-1.5 shadow-sm"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md border-t border-border px-2 py-1.5 shadow-md"
       aria-label="Mobile Navigation"
     >
       <div className="flex items-center justify-around max-w-lg mx-auto">
@@ -46,14 +46,14 @@ export function MobileNavigation() {
               href={item.href}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "flex flex-col items-center justify-center py-1 px-3 min-w-[56px] min-h-[44px] rounded-md transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2",
+                "flex flex-col items-center justify-center py-1.5 px-3 min-w-[56px] min-h-[44px] rounded-xl transition-all duration-200 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2",
                 active
-                  ? "text-primary font-semibold"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary font-bold bg-soft-blue"
+                  : "text-muted-foreground hover:text-primary hover:bg-soft-blue/50"
               )}
             >
               <IconComponent
-                className={cn("w-5 h-5 transition-transform duration-150", active && "scale-105")}
+                className={cn("w-5 h-5 transition-transform duration-200", active && "scale-110 text-primary")}
                 aria-hidden="true"
               />
               <span className="text-[10px] leading-tight mt-1 tracking-tight">
