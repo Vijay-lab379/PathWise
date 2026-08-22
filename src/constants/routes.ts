@@ -1,0 +1,18 @@
+export const ROUTES = {
+  HOME: "/",
+  LOGIN: "/login",
+  SIGNUP: "/signup",
+  FORGOT_PASSWORD: "/forgot-password",
+  DASHBOARD: "/dashboard",
+  TRIPS: "/trips",
+  NEW_TRIP: "/trips/new",
+  TRIP_DETAILS: (tripId: string) => `/trips/${tripId}`,
+  TRIP_ITINERARY: (tripId: string) => `/trips/${tripId}/itinerary`,
+  TRIP_BUDGET: (tripId: string) => `/trips/${tripId}/budget`,
+  TRIP_CALENDAR: (tripId: string) => `/trips/${tripId}/calendar`,
+  EXPLORE: "/explore",
+  COMMUNITY: "/community",
+  PROFILE: "/profile",
+  SHARE: (token: string) => `/share/${token}`,
+  API_HEALTH: "/api/health",
+} as const;
