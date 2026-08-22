@@ -7,7 +7,7 @@ import { User, Eye, EyeOff, Loader2, CheckCircle, AlertCircle } from "lucide-rea
 import { ROUTES } from "@/constants/routes";
 
 export default function LoginPage() {
-  const router = Router();
+  const router = useRouter();
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -48,7 +48,7 @@ export default function LoginPage() {
     <div className="w-full max-w-md bg-surface border border-border rounded-2xl p-6 sm:p-8 shadow-sm">
       {/* Top Avatar Circle from Wireframe (Photo) */}
       <div className="flex flex-col items-center text-center mb-6">
-        <div className="w-20 h-20 rounded-full bg-warm-sand/80 border-2 border-primary/20 flex items-center justify-center text-primary mb-4 shadow-xs">
+        <div className="w-20 h-20 rounded-full bg-soft-blue border-2 border-primary/20 flex items-center justify-center text-primary mb-4 shadow-xs">
           <User className="w-10 h-10 text-primary" aria-hidden="true" />
         </div>
         <h1 className="font-heading font-bold text-2xl tracking-tight text-foreground">
@@ -152,7 +152,7 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={loading || success}
-          className="w-full mt-2 py-3 px-4 bg-primary hover:bg-primary-dark text-primary-foreground font-medium rounded-xl text-sm transition-colors duration-150 flex items-center justify-center min-h-[44px] focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 disabled:opacity-70 cursor-pointer"
+          className="w-full mt-2 py-3 px-4 bg-primary hover:bg-primary-dark text-primary-foreground font-medium rounded-xl text-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center min-h-[44px] focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 disabled:opacity-70 cursor-pointer shadow-2xs"
         >
           {loading ? (
             <>
@@ -177,8 +177,4 @@ export default function LoginPage() {
       </div>
     </div>
   );
-}
-
-function Router() {
-  return useRouter();
 }
