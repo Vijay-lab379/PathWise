@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, use } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -6,9 +8,9 @@ import {
   MapPin,
   Clock,
   DollarSign,
+  Share2,
   Building2,
   Compass,
-  ArrowRight,
   Sparkles,
   ArrowLeft,
   Utensils,
@@ -16,9 +18,13 @@ import {
   Building,
   Bus,
   ShoppingBag,
+  Copy,
+  CheckCircle2,
+  Globe,
 } from "lucide-react";
 import { MOCK_TRIPS } from "@/features/trips/mockData";
 import { MOCK_ITINERARY_SECTIONS } from "@/features/itinerary/mockData";
+import { ShareTripModal } from "@/components/trips/ShareTripModal";
 import { ROUTES } from "@/constants/routes";
 
 interface SharePageProps {
@@ -34,16 +40,30 @@ const categoryIcons = {
   Shopping: ShoppingBag,
 };
 
-export default async function FinalItinerarySharePage({ params }: SharePageProps) {
-  const { shareToken } = await params;
-
-  // Match trip or fallback to first mock trip
+export default function FinalItinerarySharePage({ params }: SharePageProps) {
+  const { shareToken } = use(params);
   const trip = MOCK_TRIPS.find((t) => t.id === shareToken || t.id === "trip-1") || MOCK_TRIPS[0];
 
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [copiedToast, setCopiedToast] = useState<string | null>(null);
+
+  const handleCopyTripTemplate = () => {
+    setCopiedToast(`Trip template "${trip.title}" saved to your Pathwise account!`);
+    setTimeout(() => setCopiedToast(null), 3000);
+  };
+
   return (
-    <div className="space-y-8 pb-20 max-w-5xl mx-auto">
-      {/* NAVIGATION BAR LINK */}
-      <div className="flex items-center justify-between">
+    <div className="space-y-8 pb-20 max-w-5xl mx-auto relative">
+      {/* TOAST CONFIRMATION NOTIFICATION */}
+      {copiedToast && (
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-foreground text-background text-xs font-semibold px-4 py-2.5 rounded-xl shadow-xl flex items-center space-x-2 animate-in slide-in-from-top-3 duration-200">
+          <CheckCircle2 className="w-4 h-4 text-success shrink-0" />
+          <span>{copiedToast}</span>
+        </div>
+      )}
+
+      {/* PUBLIC HEADER NAVIGATION BAR */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <Link
           href={ROUTES.TRIPS}
           className="inline-flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors"
@@ -52,9 +72,25 @@ export default async function FinalItinerarySharePage({ params }: SharePageProps
           Back to My Trips
         </Link>
 
-        <span className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full uppercase tracking-wider">
-          Shared Trip Itinerary
-        </span>
+        <div className="flex items-center space-x-2">
+          <button
+            type="button"
+            onClick={handleCopyTripTemplate}
+            className="px-3.5 py-2 bg-surface hover:bg-muted border border-border text-foreground font-semibold rounded-xl text-xs flex items-center space-x-1.5 transition-colors min-h-[40px] shadow-2xs"
+          >
+            <Copy className="w-3.5 h-3.5 text-primary" />
+            <span>Copy Trip Template</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setShareModalOpen(true)}
+            className="px-4 py-2 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold rounded-xl text-xs flex items-center space-x-1.5 transition-colors min-h-[40px] shadow-xs"
+          >
+            <Share2 className="w-3.5 h-3.5" />
+            <span>Share Trip</span>
+          </button>
+        </div>
       </div>
 
       {/* EDITORIAL HERO BANNER */}
@@ -73,17 +109,19 @@ export default async function FinalItinerarySharePage({ params }: SharePageProps
           {/* Hero Content */}
           <div className="absolute inset-0 p-6 sm:p-10 flex flex-col justify-between text-white">
             <div className="flex items-center justify-between">
-              <span className="bg-surface/20 backdrop-blur-md border border-white/20 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-white">
-                {trip.status}
+              <span className="bg-surface/20 backdrop-blur-md border border-white/20 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-white flex items-center gap-1">
+                <Globe className="w-3.5 h-3.5 text-travel-accent" />
+                Public Itinerary Story
               </span>
 
-              <Link
-                href={ROUTES.TRIP_ITINERARY(trip.id)}
-                className="px-4 py-2 bg-surface/20 hover:bg-surface/30 backdrop-blur-md border border-white/20 text-white font-semibold rounded-xl text-xs flex items-center space-x-1.5 transition-colors min-h-[40px]"
+              <button
+                type="button"
+                onClick={() => setShareModalOpen(true)}
+                className="px-3.5 py-2 bg-surface/20 hover:bg-surface/30 backdrop-blur-md border border-white/20 text-white font-semibold rounded-xl text-xs flex items-center space-x-1.5 transition-colors min-h-[40px]"
               >
-                <span>Open in Builder</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+                <Share2 className="w-3.5 h-3.5" />
+                <span>Share</span>
+              </button>
             </div>
 
             <div className="space-y-3">
@@ -194,7 +232,7 @@ export default async function FinalItinerarySharePage({ params }: SharePageProps
             Complete Day-by-Day Itinerary
           </h2>
           <span className="text-xs text-muted-foreground font-medium">
-            Read-Only Final View
+            Read-Only Public Story
           </span>
         </div>
 
@@ -294,6 +332,14 @@ export default async function FinalItinerarySharePage({ params }: SharePageProps
           </Link>
         </div>
       </section>
+
+      {/* SHARE MODAL */}
+      <ShareTripModal
+        isOpen={shareModalOpen}
+        onClose={() => setShareModalOpen(false)}
+        tripTitle={trip.title}
+        shareUrl={`https://pathwise.app/share/${trip.id}`}
+      />
     </div>
   );
 }
