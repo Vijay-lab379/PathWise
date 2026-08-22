@@ -18,7 +18,7 @@ import {
 } from "@/features/itinerary/mockData";
 import { TripNavTabs } from "@/components/trips/TripNavTabs";
 import { ActivityCard } from "@/components/itinerary/ActivityCard";
-import { AddActivityModal } from "@/components/itinerary/AddActivityModal";
+import { ActivityDiscoveryModal } from "@/components/itinerary/ActivityDiscoveryModal";
 import { ROUTES } from "@/constants/routes";
 
 interface PageProps {
@@ -104,7 +104,7 @@ export default function ItineraryBuilderPage({ params }: PageProps) {
   const handleAddSection = () => {
     const nextNum = sections.length + 1;
     const newSec: ItinerarySection = {
-      id: `sec-${Date.now()}`,
+      id: `sec-${nextNum}`,
       sectionNumber: nextNum,
       title: `Section ${nextNum}: Tokyo Metropolitan & Culture Exploration`,
       description: "Explore modern district architecture, Meiji Shrine, and Shibuya Crossing.",
@@ -118,7 +118,7 @@ export default function ItineraryBuilderPage({ params }: PageProps) {
           dateLabel: "Thursday, 22 October",
           activities: [
             {
-              id: `act-${Date.now()}-1`,
+              id: `act-sec${nextNum}-1`,
               time: "10:00 AM",
               title: "Meiji Jingu Shrine Morning Walk",
               category: "Culture",
@@ -317,13 +317,13 @@ export default function ItineraryBuilderPage({ params }: PageProps) {
         </button>
       </div>
 
-      {/* ADD ACTIVITY MODAL */}
-      <AddActivityModal
+      {/* ACTIVITY DISCOVERY MODAL */}
+      <ActivityDiscoveryModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         onAddActivity={handleAddActivity}
         dayNumber={activeDayNumber}
-        sectionTitle={sections.find((s) => s.id === activeSectionId)?.city || "City"}
+        city={sections.find((s) => s.id === activeSectionId)?.city || "Destination"}
       />
     </div>
   );
