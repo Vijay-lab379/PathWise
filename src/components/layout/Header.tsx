@@ -28,8 +28,14 @@ export function Header() {
           <DesktopNavigation />
         </div>
 
-        {/* RIGHT: Profile / Avatar Control */}
+        {/* RIGHT: Sign In & Profile / Avatar Control */}
         <div className="flex items-center space-x-3">
+          <Link
+            href={ROUTES.LOGIN}
+            className="text-xs font-semibold text-primary hover:text-primary-dark px-3 py-2 rounded-lg border border-primary/20 hover:bg-primary/5 transition-colors focus-visible:outline-2 focus-visible:outline-primary"
+          >
+            Sign In
+          </Link>
           <Link
             href={ROUTES.PROFILE}
             aria-label="User Profile"
